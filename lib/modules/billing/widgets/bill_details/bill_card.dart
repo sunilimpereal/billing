@@ -1,23 +1,12 @@
+import 'package:billing/modules/billing/models/bill_model.dart';
 import 'package:flutter/material.dart';
 
 class BillCard extends StatelessWidget {
-  final String productName;
-  final double productPrice;
-  final int quantity;
-  final String imagePath;
-
-  const BillCard({
-    super.key,
-    required this.productName,
-    required this.productPrice,
-    required this.quantity,
-    required this.imagePath,
-  });
+  final BillItem billItem;
+  const BillCard({super.key, required this.billItem});
 
   @override
   Widget build(BuildContext context) {
-    double totalPrice = productPrice * quantity;
-
     return Card(
       elevation: 0,
       margin: EdgeInsets.all(4),
@@ -27,7 +16,7 @@ class BillCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Image.asset(
-              imagePath,
+              billItem.item.images.first,
               height: 60,
               fit: BoxFit.cover,
             ),
@@ -38,7 +27,7 @@ class BillCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      productName,
+                      billItem.item.name,
                       style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -49,7 +38,7 @@ class BillCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '\$${productPrice.toStringAsFixed(2)}',
+                          '\$${billItem.item.price.toStringAsFixed(2)}',
                           style: const TextStyle(
                             // fontSize: 16,
                             color: Colors.green,
@@ -62,7 +51,7 @@ class BillCard extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '$quantity Qty',
+                          '${billItem.qty} Qty',
                           style: const TextStyle(
                             fontSize: 16,
                           ),
@@ -71,7 +60,7 @@ class BillCard extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      '\$${totalPrice.toStringAsFixed(2)}',
+                      '\$${(billItem.qty * billItem.item.price).toStringAsFixed(2)}',
                       style: const TextStyle(
                         // fontSize: 16,
                         color: Colors.blue,
