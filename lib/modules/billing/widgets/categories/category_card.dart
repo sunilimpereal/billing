@@ -1,9 +1,9 @@
+import 'package:billing/modules/billing/models/item_category.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 class CategoryCard extends StatefulWidget {
-  const CategoryCard({super.key});
+  final ItemCategory itemCategory;
+  const CategoryCard({super.key, required this.itemCategory});
 
   @override
   State<CategoryCard> createState() => _CategoryCardState();
@@ -16,24 +16,25 @@ class _CategoryCardState extends State<CategoryCard> {
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-      margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+      margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 4),
       child: Padding(
-        padding: EdgeInsets.all(1.0),
+        padding: const EdgeInsets.all(1.0),
         child: ListTile(
-          horizontalTitleGap: 12,
+          horizontalTitleGap: 6,
           leading: Container(
             width: 40,
             height: 34,
             decoration: BoxDecoration(
-              color: Colors.red,
               borderRadius: BorderRadius.circular(8),
+              image: DecorationImage(
+                  image: NetworkImage(widget.itemCategory.imageUrl), fit: BoxFit.cover),
             ),
           ),
-          title: const Text(
-            "T-Shirts",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-            ),
+          title: Text(
+            widget.itemCategory.name,
+            overflow: TextOverflow.clip,
+            maxLines: 1,
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
           ),
         ),
       ),

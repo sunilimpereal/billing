@@ -1,9 +1,11 @@
+import 'package:billing/modules/orders/models/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 
 class OrdersCard extends StatelessWidget {
-  const OrdersCard({super.key});
+  final Order order;
+  const OrdersCard({super.key, required this.order});
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +39,10 @@ class OrdersCard extends StatelessWidget {
                       height: 8,
                     ),
                     Row(
-                      children: const [
+                      children: [
                         Text(
-                          "123456",
-                          style: TextStyle(
+                          "BILL-${order.id.toString()}",
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),
@@ -48,24 +50,23 @@ class OrdersCard extends StatelessWidget {
                         SizedBox(
                           width: 16,
                         ),
-                        Text(
-                          "AC Hall | 3",
-                          style: TextStyle(
-                            color: Colors.grey,
-                            fontSize: 16,
-                          ),
-                        ),
+                        // Text(
+                        //   "AC Hall | 3",
+                        //   style: TextStyle(
+                        //     color: Colors.grey,
+                        //     fontSize: 16,
+                        //   ),
+                        // ),
                       ],
                     ),
                     SizedBox(
                       height: 8,
                     ),
                     Row(
-                      children: const [
+                      children: [
                         Text(
-                          "4",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
+                          order.items.length.toString(),
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                         ),
                         SizedBox(
                           width: 4,
@@ -83,9 +84,8 @@ class OrdersCard extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "\$4000",
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 18),
+                                "\$${order.tPrice}",
+                                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                               ),
                               Container(
                                 padding: EdgeInsets.all(8),
@@ -115,10 +115,9 @@ class OrdersCard extends StatelessWidget {
                         child: Container(
                             height: 50,
                             decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                    bottomLeft: Radius.circular(8)),
-                                border:
-                                    Border.all(width: 1, color: Colors.green)),
+                                borderRadius:
+                                    const BorderRadius.only(bottomLeft: Radius.circular(8)),
+                                border: Border.all(width: 1, color: Colors.green)),
                             child: Center(
                                 child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -141,10 +140,9 @@ class OrdersCard extends StatelessWidget {
                         child: Container(
                             height: 50,
                             decoration: BoxDecoration(
-                                borderRadius: const BorderRadius.only(
-                                    bottomRight: Radius.circular(8)),
-                                border:
-                                    Border.all(width: 1, color: Colors.green)),
+                                borderRadius:
+                                    const BorderRadius.only(bottomRight: Radius.circular(8)),
+                                border: Border.all(width: 1, color: Colors.green)),
                             child: Center(
                                 child: Row(
                               mainAxisAlignment: MainAxisAlignment.center,

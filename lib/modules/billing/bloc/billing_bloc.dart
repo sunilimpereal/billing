@@ -17,7 +17,6 @@ class BillingBloc extends Bloc<BillingEvent, BillingState> {
       bool itemAlreadyPresent = false;
       for (BillItem item in items) {
         if (item.item.id == event.item.id) {
-          log(event.item.quantity.toString());
           item.qty = item.qty + event.qty;
           itemAlreadyPresent = true;
         }
@@ -43,6 +42,13 @@ class BillingBloc extends Bloc<BillingEvent, BillingState> {
         items.removeWhere((element) => element.item.id == event.item.id);
       }
       emit(state.copyWith(billItems: items));
+    });
+
+    on<CreateBillEvent>((event, emit) {
+      emit(state.copyWith());
+    });
+    on<ClearBillEvent>((event, emit) {
+      emit(state.copyWith(billItems: []));
     });
   }
 }

@@ -18,3 +18,11 @@ class ReduceItemInBillEvent extends BillingEvent {
   final int qty;
   const ReduceItemInBillEvent({required this.item, required this.qty});
 }
+
+class CreateBillEvent extends BillingEvent {
+  const CreateBillEvent();
+}
+
+class ClearBillEvent extends BillingEvent {
+  const ClearBillEvent();
+}

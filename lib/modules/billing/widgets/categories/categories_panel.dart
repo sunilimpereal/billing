@@ -1,3 +1,4 @@
+import 'package:billing/modules/billing/repository/billing_data.dart';
 import 'package:flutter/material.dart';
 
 import 'category_card.dart';
@@ -24,15 +25,11 @@ class _BillingCategoriesPanelState extends State<BillingCategoriesPanel> {
             ),
           ),
           Column(
-            children: const [
-              CategoryCard(),
-              CategoryCard(),
-              CategoryCard(),
-              CategoryCard(),
-              CategoryCard(),
-              CategoryCard(),
-            ],
-          )
+              children: category
+                  .map((e) => CategoryCard(
+                        itemCategory: e,
+                      ))
+                  .toList())
         ],
       ),
     );

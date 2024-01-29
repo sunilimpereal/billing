@@ -1,5 +1,6 @@
 import 'package:billing/constants/ui/theme_constants.dart';
 import 'package:billing/modules/billing/bloc/billing_bloc.dart';
+import 'package:billing/modules/orders/bloc/orders_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,8 +17,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Billing',
       theme: AppTheme.lightTheme,
-      home: BlocProvider(
-        create: (context) => BillingBloc(),
+      home: MultiBlocListener(
+        listeners: [
+          BlocProvider<BillingBloc>(
+            create: (BuildContext context) => BillingBloc(),
+          ),
+          BlocProvider<OrdersBloc>(
+            create: (BuildContext context) => OrdersBloc(),
+          ),
+        ],
         child: BillingHomeScreen(),
       ),
     );
