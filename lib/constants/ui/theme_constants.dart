@@ -8,6 +8,7 @@ class AppTheme {
   // Define your theme constants here, using the color constants
   static ThemeData lightTheme = ThemeData(
     primaryColor: AppColors.primaryColor,
+    useMaterial3: false,
     // accentColor: AppColors.accentColor,
     scaffoldBackgroundColor: AppColors.backgroundColor,
     appBarTheme: AppBarTheme(
